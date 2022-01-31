@@ -3,3 +3,21 @@ body {
     padding: 0;
     overflow: hidden;
 }
+
+
+#loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #00b09b, #96c93d);
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

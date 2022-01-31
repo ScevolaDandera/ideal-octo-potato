@@ -3,23 +3,26 @@
     <head>
         <meta charset="utf-8" />
         <title>IDEAL OCTO POTATO</title>
-        <link href="/static/style.css">
+        <link rel="stylesheet" href="./static/style.css">
     </head>
     <body>
+        <div id="loading">
+            Loading ...
+        </div>
     </body>
     
     <script>
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", () => {
-                navigator.serviceWorker
-                    .register("service-worker.js")
-                    .then((registration) => {
-                        console.log("Service Worker registered: ", registration);
-                    })
-                    .catch((registrationError) => {
-                        console.error("Service Worker registration failed: ", registrationError);
-                    });
-            });
-        }
+        // if ("serviceWorker" in navigator) {
+        //     window.addEventListener("load", () => {
+        //         navigator.serviceWorker
+        //             .register("service-worker.js")
+        //             .then((registration) => {
+        //                 console.log("Service Worker registered: ", registration);
+        //             })
+        //             .catch((registrationError) => {
+        //                 console.error("Service Worker registration failed: ", registrationError);
+        //             });
+        //     });
+        // }
     </script>
 </html>

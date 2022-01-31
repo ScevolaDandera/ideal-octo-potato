@@ -25,9 +25,9 @@ const config = {
     new CopyPlugin({
       patterns: [
         { from: "static", to: "static" },
-        { from: "modules", to: "modules" },
+        // { from: "modules", to: "modules" },
         { from: "libs", to: "libs" },
-        { from: "service-worker.js", to: "service-worker.js" }
+        // { from: "service-worker.js", to: "service-worker.js" }
       ],
     }),
 

@@ -1,3 +1,7 @@
+# not_exported_to_dist
+not_exported_to_dist/
+
+
 # Logs
 logs
 *.log
