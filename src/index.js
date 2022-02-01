@@ -25,8 +25,26 @@ class MainScene extends Scene3D {
 
 
     create() {
-        const { camera, ground, light, sky } = this.warpSpeed();
-        //    this.physics.debug.enable();
+        const { ground, light, sky } = this.warpSpeed('-camera');
+      //     this.physics.debug.enable();
+           const axesHelper = new THREE.AxesHelper( 5 );
+            this.scene.add( axesHelper );
+        this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.25, 1000 );
+        this.scene.add( this.camera );
+        this.camera.position.set(0, 2, -2 );
+		this.camera.lookAt( new THREE.Vector3( 2, 4, 2 ) );
+
+        const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+        hemiLight.position.set( 0, 20, 0 );
+        this.scene.add( hemiLight );
+
+        const dirLight = new THREE.DirectionalLight( 0xffffff );
+        dirLight.position.set( 0, 20, 10 );
+        this.scene.add( dirLight );
+
+        console.log(this.scene);
+
+
 
         this.mixer = new THREE.AnimationMixer(this.scene);
 
@@ -37,25 +55,24 @@ class MainScene extends Scene3D {
             this.erika = fbx[0];
             this.scene.add(this.erika);
             this.erikaspeed = 500;
-            // this.physics.add.existing(this.erika, {
-            //     shape: 'convexMesh',
-            //     mass: 0.1,
-            //     collisionFlags: 0,
-            // });
+            this.physics.add.existing(this.erika, {
+                shape: 'convexMesh',
+                mass: 0.1,
+                collisionFlags: 1,
+            });
 
 
 
-            if (this.erika) {
+            if (this.erika.body) {
                 const loadingdiv = document.getElementById('loading');
                 loadingdiv.style.display = 'none';
-                console.log(this.mixer);
             }
         });
 
 
 
 
-        // document.onkeydown = this.keyboardControls.bind(this);
+        document.onkeydown = this.keyboardControls.bind(this);
         document.onkeyup = this.stopMovingPlayer.bind(this);
 
 
@@ -101,13 +118,27 @@ class MainScene extends Scene3D {
 
     }
 
+    cameraUpdate() {
+        //this.camera
+        // follow camera with player
+        // this.camera.position.x = this.erika.position.x;
+        // this.camera.position.y = this.erika.position.y + 2;
+        // this.camera.position.z = this.erika.position.z;
+        this.camera.lookAt(this.erika.position);
+
+    }
+
     update() {
         if (this.mixer) {
             this.delta = this.clock.getDelta();
-            this.mixer.update(this.delta * this.erikaspeed);
-            this.erika.position.z += this.delta * this.erikaspeed * 1.5;
+         //   this.mixer.update(this.delta * this.erikaspeed);
+            // this.erika.position.z += this.delta * this.erikaspeed * 1.5;
+            if(this.camera) {
+                this.cameraUpdate();
+            }
         }
-
+      
+      
 
 
     }

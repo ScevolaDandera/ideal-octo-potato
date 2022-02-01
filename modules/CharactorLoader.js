@@ -14,15 +14,16 @@ const model = new Promise((resolve, reject) => {
     });
 });
 
+// let animations = [];
+
 const animation = new Promise((resolve, reject) => {
     const loader = new FBXLoader();
     loader.setPath('/static/models/erika_archer/animations/');
     loader.load('standing walk forward.fbx', (fbx) => {
+        // animations.push(fbx);
         resolve(fbx);
-    });
+});
 });
 
 
 export const modelWithAnimation = Promise.all([model, animation]);
-
-//export default modelWithAnimation;
